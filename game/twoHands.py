@@ -2,6 +2,12 @@ from game import Game, GameState
 import numpy as np
 
 
+class TwoHand(Game):
+
+    def __init__(self, gameState, currentPlayer):
+        super(TwoHand, self).__init__(gameState, currentPlayer)
+
+
 class TwoHandState(GameState):
 
     def __init__(self, initState=(1, 1, 1, 1), ):
@@ -50,6 +56,9 @@ class TwoHandState(GameState):
 
         return actionList
 
+    def act(self, action):
+        self.state = action(self.state)
+
     def isEnd(self):
         return np.all(np.array(self.state) >= 10)
 
@@ -57,5 +66,5 @@ class TwoHandState(GameState):
         print '*'*10
         print self.state[0], self.state[1]
         print self.state[2], self.state[3]
-
+        print '*'*10
 

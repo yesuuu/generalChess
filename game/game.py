@@ -1,3 +1,6 @@
+import random
+import numpy as np
+
 
 class Game(object):
 
@@ -7,17 +10,25 @@ class Game(object):
         self.currentPlayer = currentPlayer
 
     def getValidActions(self):
-        self.gameState.getValidActions(self.currentPlayer)
-
-    def act(self, action, ):
-        self.gameState.act(action, self.currentPlayer)
-        self.changePlayer()
+        return self.gameState.getValidActions(self.currentPlayer)
 
     def changePlayer(self):
         self.currentPlayer = 1 if self.currentPlayer == 2 else 2
 
-    def simulate(self):
-        pass
+    def simulate(self, maxIter=np.inf, isShowState=True):
+        print 'simulate start'
+        iterNum = 0
+        while not self.gameState.isEnd() and iterNum < maxIter:
+            validAction = self.getValidActions()
+            if not validAction:
+                break
+            action = random.choice(validAction)
+            self.gameState.act(action)
+
+            if isShowState:
+                self.gameState.showState()
+            self.changePlayer()
+            iterNum += 1
 
 
 class GameState(object):
@@ -28,7 +39,7 @@ class GameState(object):
     def getValidActions(self, currentPlayer):
         pass
 
-    def act(self, action, currentPlayer):
+    def act(self, action):
         pass
 
     def isEnd(self):
