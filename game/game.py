@@ -1,5 +1,6 @@
 import random
 import numpy as np
+from abc import abstractmethod
 
 
 class Game(object):
@@ -19,7 +20,9 @@ class Game(object):
         print 'simulate start'
         iterNum = 0
         while not self.gameState.isEnd() and iterNum < maxIter:
+            print 'itering ...'
             validAction = self.getValidActions()
+            # print validAction
             if not validAction:
                 break
             action = random.choice(validAction)
@@ -33,18 +36,19 @@ class Game(object):
 
 class GameState(object):
 
-    def __init__(self):
-        pass
-
+    @abstractmethod
     def getValidActions(self, currentPlayer):
         pass
 
+    @abstractmethod
     def act(self, action):
         pass
 
+    @abstractmethod
     def isEnd(self):
         pass
 
+    @abstractmethod
     def showState(self):
         pass
 

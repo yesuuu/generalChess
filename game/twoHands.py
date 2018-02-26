@@ -2,16 +2,9 @@ from game import Game, GameState
 import numpy as np
 
 
-class TwoHand(Game):
-
-    def __init__(self, gameState, currentPlayer):
-        super(TwoHand, self).__init__(gameState, currentPlayer)
-
-
 class TwoHandState(GameState):
 
     def __init__(self, initState=(1, 1, 1, 1), ):
-        super(TwoHandState, self).__init__()
         self.state = initState
         self.actionWrapper = self._initActionWrapper()
 
