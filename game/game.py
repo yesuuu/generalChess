@@ -21,11 +21,9 @@ class Game(object):
         iterNum = 0
         while not self.gameState.isEnd() and iterNum < maxIter:
             print 'itering ...'
-            validAction = self.getValidActions()
+            validActions = self.getValidActions()
             # print validAction
-            if not validAction:
-                break
-            action = random.choice(validAction)
+            action = random.choice(validActions)
             self.gameState.act(action)
 
             if isShowState:
@@ -45,10 +43,20 @@ class GameState(object):
         pass
 
     @abstractmethod
-    def isEnd(self):
+    def isEnd(self, currentPlayer):
+        """return (False, None) or (True, Player1 win rate)"""
         pass
 
     @abstractmethod
     def showState(self):
         pass
+
+    @abstractmethod
+    def getActionFromCmd(self, cmd):
+        pass
+
+    @abstractmethod
+    def showActionWinRate(self, winRateDict):
+        pass
+
 
