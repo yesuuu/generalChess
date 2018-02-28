@@ -19,7 +19,7 @@ class Game(object):
     def simulate(self, maxIter=np.inf, isShowState=True):
         print 'simulate start'
         iterNum = 0
-        while not self.gameState.isEnd() and iterNum < maxIter:
+        while not self.gameState.isEnd()[0] and iterNum < maxIter:
             print 'itering ...'
             validActions = self.getValidActions()
             # print validAction
@@ -33,6 +33,9 @@ class Game(object):
 
 
 class GameState(object):
+
+    def __init__(self):
+        pass
 
     @abstractmethod
     def getValidActions(self, currentPlayer):
@@ -48,11 +51,15 @@ class GameState(object):
         pass
 
     @abstractmethod
+    def getActionFromCmd(self, cmd):
+        pass
+
+    @abstractmethod
     def showState(self):
         pass
 
     @abstractmethod
-    def getActionFromCmd(self, cmd):
+    def showAction(self):
         pass
 
     @abstractmethod

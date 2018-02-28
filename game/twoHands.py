@@ -56,12 +56,6 @@ class TwoHandState(GameState):
         else:
             return True, 0 if currentPlayer == 1 else 1
 
-    def showState(self):
-        print '*'*10
-        print self.state[0], self.state[1]
-        print self.state[2], self.state[3]
-        print '*'*10
-
     def getActionFromCmd(self, cmd):
         """
         cmd like '1,1,1'
@@ -92,6 +86,12 @@ class TwoHandState(GameState):
             raise Exception
 
         return self.addToPosition(positionChange, positionToAdd)
+
+    def showState(self):
+        print '*'*10
+        print self.state[0], self.state[1]
+        print self.state[2], self.state[3]
+        print '*'*10
 
     def showActionWinRate(self, winRateDict):
         pass
